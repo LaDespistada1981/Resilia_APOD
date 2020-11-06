@@ -1,0 +1,54 @@
+* {
+    background-color: #dcdcdc;
+    font-family: 'Roboto Slab', serif;
+}
+
+header h1 {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    font-size: 25pt;
+    font-weight: 800;
+}
+
+#container-img{
+    background-color: #636161;
+    display: flex;
+    margin: 20px auto;
+    width: 755px;
+    height: 507px;
+}
+
+#description {
+    background-color: #636161;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    text-align: center;
+    margin: 20px auto;
+    width: 90%;
+    height: 400px;
+}
+
+#description .subtitle{
+    margin-bottom: 20px;
+    font-size: 20pt;
+    font-weight: 600;
+}
+
+#description #creditos {
+    margin-bottom: 20px;
+    font-size: 15pt;
+    font-weight: bold;
+}
+#text-description {
+    margin-bottom: 20px;
+    font-size: 15pt;
+}
+
+.rodape {
+    display: flex;
+    padding: 32px;
+    justify-content: center;
+}
