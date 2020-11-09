@@ -3,8 +3,8 @@ class UserModel {
     {
         console.log('Model foi criada!')
 
+        this._date = busca.value;
         this._title = '';
-        this._date = '';
         this._image = '';
         this._explanation = '';
     }
@@ -15,24 +15,44 @@ class UserModel {
 
         let request = new XMLHttpRequest();
 
-        request.open( 'GET', 'https://api.nasa.gov/planetary/apod?api_key=ECpoRsNJWK3SQxK9HfxJQcXii7ZCh7YXxaaffIg0', false);
+        request.open( 'GET', 'https://api.nasa.gov/planetary/apod?api_key=ECpoRsNJWK3SQxK9HfxJQcXii7ZCh7YXxaaffIg0&date=' + this._date, false);
 
-        request.setRequestHeader('Authorization', 'ECpoRsNJWK3SQxK9HfxJQcXii7ZCh7YXxaaffIg0')
+        //request.setRequestHeader('Authorization', 'ECpoRsNJWK3SQxK9HfxJQcXii7ZCh7YXxaaffIg0', false)
 
-        request.addEventListener('load', function(){
+        request.addEventListener('load', () =>
+        {
             
             if ( request.status == 200 )
             {
-                this._title = this.responseText.title;
-                this._date = this.responseText.date;
-                this._image = this.responseText.url;
-                this._explanation = this.responseText.explanation;
+               let dados = this._processaResponse( request.responseText );
+
+               this._atualiza( dados )
             }
         })
 
         request.send();
 
         console.log(request);
+    }
+
+    _processaResponse( responseString )
+    {
+        console.log( 'Model está processando response' );
+
+        let response = JSON.parse ( responseString );
+
+        return response;
+
+    }
+
+    _atualiza ( dados )
+    {
+        console.log('Model está atualizando os dados.')
+
+        this._date = dados.date;
+        this._title = dados.title;
+        this._image = dados.url;
+        this._explanation = dados.explanation;
     }
 
     getTitle()
@@ -64,12 +84,10 @@ class UserView
     {
         console.log('View recebendo uma imagem e criando uma visualização.')
 
+
         let card = document.createElement('div');
-
-        document.querySelector('body')
-
-        document.body.appendChild( card );
-
+        card.classList = 'corpo';
+        
         card.innerHTML =
         `
             <p>${model.getDate()}</p>
@@ -77,6 +95,7 @@ class UserView
             <h2>${model.getTitle()}</h2>
             <p>${model.getExplanation()}</p>
         `
+        document.body.appendChild( card );
     }
 }
 
@@ -98,4 +117,4 @@ class UserController
 
 let controller = new UserController();
 
-controller.adicionaImagem();
+enviar.addEventListener('click', controller.adicionaImagem);
