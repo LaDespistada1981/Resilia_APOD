@@ -2,7 +2,6 @@
     font-family: 'Roboto Slab', serif;
     background-color: #06020e;
     opacity: 90%;
-    
 }
 
 header {
@@ -22,7 +21,6 @@ header h1 {
     justify-content: center;
     font-size: 25pt;
     font-weight: 800;
-   
 }
 
 .nav-bar {
@@ -77,5 +75,3 @@ header h1 {
  button {
      background-color: white;
  }
-
-

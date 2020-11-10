@@ -21,7 +21,6 @@ class UserModel {
 
         request.addEventListener('load', () =>
         {
-            
             if ( request.status == 200 )
             {
                let dados = this._processaResponse( request.responseText );
@@ -87,7 +86,7 @@ class UserView
 
         let card = document.createElement('div');
         card.classList = 'corpo';
-        
+
         card.innerHTML =
         `
             <p>${model.getDate()}</p>
